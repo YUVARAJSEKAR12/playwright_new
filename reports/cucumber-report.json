@@ -1,0 +1,84 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login-feature;successful-login-with-valid-credentials",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Successful login with valid credentials",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 2501670400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I open the login page",
+            "match": {
+              "location": "features\\step_definitions\\loginSteps.js:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 18243399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "I login with username \"standard_user\" and password \"secret_sauce\"",
+            "match": {
+              "location": "features\\step_definitions\\loginSteps.js:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 351449300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "I should see the inventory page",
+            "match": {
+              "location": "features\\step_definitions\\loginSteps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10350199
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1100993500
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@smoke",
+            "line": 3
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "login-feature",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Login feature",
+    "tags": [],
+    "uri": "features\\login.feature"
+  }
+]

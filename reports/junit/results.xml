@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<testsuite name="Cucumber" time="5.475" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-03-18T15:32:55.279Z">
+  <testcase classname="Login feature" name="Successful login with valid credentials" time="3.987">
+    <system-out><![CDATA[Given I open the login page.................................................passed
+When I login with username "standard_user" and password "secret_sauce"......passed
+Then I should see the inventory page........................................passed]]></system-out>
+  </testcase>
+</testsuite>
