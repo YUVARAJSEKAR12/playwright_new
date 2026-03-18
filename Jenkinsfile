@@ -5,6 +5,14 @@ pipeline {
         nodejs 'Node18'
     }
 
+    parameters {
+        string(
+            name: 'TAGS',
+            defaultValue: '@smoke',
+            description: 'Enter Cucumber tags (e.g., @smoke or @regression or @smoke and not @wip)'
+        )
+    }
+
     stages {
         stage('Install') {
             steps {
@@ -17,7 +25,8 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat 'npx cucumber-js --tags "@smoke"'
+                echo "Running tests with TAGS: ${params.TAGS}"
+                bat "npx cucumber-js --tags \"${params.TAGS}\""
             }
         }
     }
