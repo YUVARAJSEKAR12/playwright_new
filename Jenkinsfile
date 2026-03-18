@@ -2,60 +2,30 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'NodeJS-20'
-    }
-
-    parameters {
-        string(name: 'TAGS', defaultValue: '@smoke', description: 'Cucumber tag to run')
-        choice(name: 'BROWSER', choices: ['chromium', 'firefox', 'webkit'], description: 'Browser name')
-    }
-
-    environment {
-        CI = 'true'
-        HEADLESS = 'true'
-        BASE_URL = 'https://www.saucedemo.com/'
-        BROWSER = "${params.BROWSER}"
-    }
-
-    options {
-        timestamps()
-        disableConcurrentBuilds()
+        nodejs 'Node18'
     }
 
     stages {
-        stage('Checkout') {
+        stage('Install') {
             steps {
-                checkout scm
+                bat 'node -v'
+                bat 'npm -v'
+                bat 'npm ci'
+                bat 'npx playwright install'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Test') {
             steps {
-                sh 'npm ci'
-                sh 'npx playwright install --with-deps'
-            }
-        }
-
-        stage('Run Cucumber Tests') {
-            steps {
-                sh 'mkdir -p reports/junit screenshots videos || true'
-                sh "npx cucumber-js --tags '${params.TAGS}' --format progress --format junit:reports/junit/results.xml"
+                bat 'npx cucumber-js --tags "@smoke"'
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: 'reports/**/*, screenshots/**/*, videos/**/*', allowEmptyArchive: true, fingerprint: true
-            junit testResults: 'reports/junit/*.xml', allowEmptyResults: true
-        }
-
-        success {
-            echo 'Build passed'
-        }
-
-        failure {
-            echo 'Build failed'
+            archiveArtifacts artifacts: 'screenshots/**, videos/**, reports/**', allowEmptyArchive: true
+            junit allowEmptyResults: true, testResults: 'reports/*.xml'
         }
     }
 }
