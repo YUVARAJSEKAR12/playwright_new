@@ -8,6 +8,7 @@ Given('I open the login page', async function () {
 
 When('I login with username {string} and password {string}', async function (username, password) {
     await this.pages.loginPage.login(username, password);
+    console.log("testpasses");
 });
 
 Then('I should see the inventory page', async function () {
