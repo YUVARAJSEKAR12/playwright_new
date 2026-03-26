@@ -3,7 +3,7 @@ const BasePage = require('./BasePage');
 class LoginPage extends BasePage {
     constructor(page) {
         super(page);
-        this.usernameInput = '#user-name';
+        this.usernameInput = '#username';
         this.passwordInput = '#password';
         this.loginButton = '#login-button';
         this.inventoryContainer = '.inventory_list';
